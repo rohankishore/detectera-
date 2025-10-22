@@ -1,8 +1,10 @@
+# Use a specific Python version for reproducibility
 FROM python:3.11-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
-# system deps for some libs
+# Install system dependencies required for Python libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libatlas-base-dev \
@@ -10,27 +12,34 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
  && rm -rf /var/lib/apt/lists/*
 
-# copy requirements and install
-COPY requirements.txt ./
+# Copy only the requirements file first to leverage Docker cache
+COPY detectra/requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# copy app
-# Copy application code but exclude model files (they can be downloaded at runtime)
-COPY . /app
+# Copy the entire application code into the container
+# The .dockerignore file will exclude unnecessary files
+COPY . .
 
-# create a non-root user
+# Create a non-root user for security
 RUN useradd --create-home appuser && chown -R appuser:appuser /app
 
-WORKDIR /app
-
-# ensure entrypoint executable
-RUN chmod +x /app/entrypoint.sh || true
-
+# Switch to the non-root user
 USER appuser
 
+# Set the working directory to where your app is
+WORKDIR /app/detectra
+
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
+# Set environment variables
 ENV FLASK_ENV=production
 ENV PYTHONUNBUFFERED=1
 
+# Expose the port the app runs on
 EXPOSE 5000
 
+# Define the entrypoint for the container
 ENTRYPOINT ["/app/entrypoint.sh"]
