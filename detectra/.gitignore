@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+env/
+.venv/
+
+# Distribution
+build/
+dist/
+*.egg-info/
+
+# Byte-compiled / logs
+*.log
+*.sqlite3
+
+# VSCode
+.vscode/
+
+# Model pickles and large artifacts (use Git LFS or remove these if you want them tracked)
+*.pkl
+model/
+
+# Mac
+.DS_Store

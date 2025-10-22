@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Compound Analysis Results - Detectraa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='hi.png') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='hi.png') }}" alt="Detectraa Logo">
+                    
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('upload') }}">Pure Analysis</a></li>
+                        <li><a href="{{ url_for('mixture') }}">Mixture Analysis</a></li>
+                        <li><a href="{{ url_for('multiple') }}">Multiple Compounds</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="fade-in">
+                <h1 class="page-title">Multi-Compound Analysis Results</h1>
+                <p class="page-subtitle">
+                    Advanced multi-label classification results with overlaid spectrum visualization and compound detection.
+                </p>
+            </div>
+
+            <!-- Selected Compounds -->
+            <div class="result-card fade-in">
+                <div class="result-header">
+                    <div class="result-icon success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <circle cx="12" cy="2" r="1"/>
+                            <circle cx="12" cy="22" r="1"/>
+                            <circle cx="2" cy="12" r="1"/>
+                            <circle cx="22" cy="12" r="1"/>
+                            <circle cx="5.64" cy="5.64" r="1"/>
+                            <circle cx="18.36" cy="18.36" r="1"/>
+                            <circle cx="5.64" cy="18.36" r="1"/>
+                            <circle cx="18.36" cy="5.64" r="1"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="result-title">Selected Compounds</h2>
+                        <p class="result-subtitle">Input compounds used for spectrum simulation</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 24px;">
+                    <div>
+                        <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 12px;">Drug Compounds</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            {% if input_compounds.drugs %}
+                                {% for drug in input_compounds.drugs %}
+                                    <span style="background: #fecaca; color: #991b1b; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">
+                                        {{ drug|title }}
+                                    </span>
+                                {% endfor %}
+                            {% else %}
+                                <span style="color: var(--gray); font-style: italic;">No drug compounds selected</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 12px;">Non-Drug Compounds</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            {% if input_compounds.non_drugs %}
+                                {% for non_drug in input_compounds.non_drugs %}
+                                    <span style="background: #dcfce7; color: #166534; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">
+                                        {{ non_drug|title }}
+                                    </span>
+                                {% endfor %}
+                            {% else %}
+                                <span style="color: var(--gray); font-style: italic;">No non-drug compounds selected</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detection Results -->
+            <div class="result-card fade-in">
+                <div class="result-header">
+                    <div class="result-icon {{ 'success' if results.detected_drugs else 'warning' }}">
+                        {% if results.detected_drugs %}
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                        {% else %}
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h2 class="result-title">
+                            {% if results.detected_drugs %}
+                                Detected Drug Compounds
+                            {% else %}
+                                No Drug Compounds Detected
+                            {% endif %}
+                        </h2>
+                        <p class="result-subtitle">
+                            Multi-label classification results from ensemble models
+                        </p>
+                    </div>
+                </div>
+
+                {% if results.detected_drugs %}
+                    <div style="margin-top: 24px;">
+                        <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 16px;">Detected Compounds:</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                            {% for drug in results.detected_drugs %}
+                                <div style="background: #fecaca; color: #991b1b; padding: 12px 16px; border-radius: 8px; font-weight: 600;">
+                                    {{ drug|title }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.prediction_confidence %}
+                    <div style="margin-top: 24px;">
+                        <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 16px;">Prediction Confidence:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                            {% for compound, confidence in results.prediction_confidence.items() %}
+                                <div style="background: var(--light-blue); padding: 12px; border-radius: 8px;">
+                                    <div style="font-weight: 600; color: var(--primary-blue); font-size: 14px; margin-bottom: 4px;">
+                                        {{ compound|title }}
+                                    </div>
+                                    <div class="confidence-score" style="margin: 0;">
+                                        <div class="confidence-bar" style="margin: 0;">
+                                            <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+                                        </div>
+                                        <span class="confidence-text" style="font-size: 12px;">{{ confidence|round(1) }}%</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Overlaid Spectrum -->
+            <div class="result-card fade-in">
+                <div class="result-header">
+                    <div class="result-icon success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="result-title">Overlaid Spectrum Analysis</h3>
+                        <p class="result-subtitle">Multi-compound spectrum with individual drug compound overlays</p>
+                    </div>
+                </div>
+
+                <div class="spectrum-plot">
+                    {% if results.overlaid_spectrum_plot %}
+                        <img src="{{ results.overlaid_spectrum_plot }}" alt="Overlaid Spectrum Plot" style="width: 100%; height: auto; border-radius: 8px;">
+                    {% else %}
+                        <div style="text-align: center; padding: 48px; color: var(--gray);">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 16px;">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                            <p>Overlaid spectrum visualization will be generated here</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if results.spectrum_legend %}
+                    <div style="margin-top: 16px;">
+                        <h4 style="color: var(--primary-blue); font-size: 14px; margin-bottom: 8px;">Spectrum Legend:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px;">
+                            {% for item in results.spectrum_legend %}
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 16px; height: 16px; background: {{ item.color }}; border-radius: 2px;"></div>
+                                    <span style="font-size: 12px; color: var(--dark-gray);">{{ item.label }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Model Performance -->
+            <div class="result-card fade-in">
+                <div class="result-header">
+                    <div class="result-icon success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="result-title">Ensemble Model Performance</h3>
+                        <p class="result-subtitle">Individual classifier chain results and voting consensus</p>
+                    </div>
+                </div>
+
+                {% if results.model_performance %}
+                    <table class="peak-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Prediction</th>
+                                <th>Confidence</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for model in results.model_performance %}
+                            <tr>
+                                <td style="font-weight: 600;">{{ model.name }}</td>
+                                <td>
+                                    {% if model.prediction %}
+                                        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                                            {% for pred in model.prediction %}
+                                                <span style="background: var(--light-blue); color: var(--primary-blue); padding: 2px 6px; border-radius: 4px; font-size: 12px;">
+                                                    {{ pred }}
+                                                </span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <span style="color: var(--gray); font-style: italic;">No detection</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ model.confidence|round(1) }}%</td>
+                                <td>
+                                    {% if model.status == 'good' %}
+                                        <span style="color: var(--success); font-weight: 600;">✓ Good</span>
+                                    {% elif model.status == 'partial' %}
+                                        <span style="color: var(--warning); font-weight: 600;">△ Partial</span>
+                                    {% else %}
+                                        <span style="color: var(--error); font-weight: 600;">✗ Failed</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+
+            <!-- Peak Intensity Analysis -->
+            {% if results.peak_analysis %}
+            <div class="result-card fade-in">
+                <div class="result-header">
+                    <div class="result-icon success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 20V10"/>
+                            <path d="M12 20V4"/>
+                            <path d="M6 20v-6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="result-title">Peak Intensity Analysis</h3>
+                        <p class="result-subtitle">Characteristic peak intensities for detected compounds</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 24px;">
+                    {% for compound, peaks in results.peak_analysis.items() %}
+                        <div style="background: var(--light-blue); padding: 16px; border-radius: 8px;">
+                            <h4 style="color: var(--primary-blue); font-weight: 600; margin-bottom: 12px;">{{ compound|title }}</h4>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                {% for peak in peaks %}
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 14px; color: var(--dark-gray);">{{ peak.wavenumber }} cm⁻¹</span>
+                                        <span style="font-size: 14px; font-weight: 600; color: var(--primary-blue);">{{ peak.intensity|round(3) }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Actions -->
+            <div class="fade-in" style="text-align: center; margin-top: 48px;">
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{{ url_for('download_multi_report') }}" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Download PDF Report
+                    </a>
+                    <a href="{{ url_for('multiple') }}" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <circle cx="12" cy="2" r="1"/>
+                            <circle cx="12" cy="22" r="1"/>
+                            <circle cx="2" cy="12" r="1"/>
+                            <circle cx="22" cy="12" r="1"/>
+                            <circle cx="5.64" cy="5.64" r="1"/>
+                            <circle cx="18.36" cy="18.36" r="1"/>
+                            <circle cx="5.64" cy="18.36" r="1"/>
+                            <circle cx="18.36" cy="5.64" r="1"/>
+                        </svg>
+                        Analyze Another Combination
+                    </a>
+                    <a href="{{ url_for('home') }}" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>&copy; 2024 Detectraa. Advanced IR Spectrum Analysis Platform.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fade-in animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Animate confidence bars
+            const confidenceBars = document.querySelectorAll('.confidence-fill');
+            confidenceBars.forEach(bar => {
+                setTimeout(() => {
+                    bar.style.transition = 'width 2s ease-in-out';
+                    bar.style.width = bar.style.width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

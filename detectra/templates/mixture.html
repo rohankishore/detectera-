@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixture Compound Simulation - Detectraa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='hi.png') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='hi.png') }}" alt="Detectraa Logo">
+                    
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('upload') }}">Pure Analysis</a></li>
+                        <li><a href="{{ url_for('mixture') }}">Mixture Analysis</a></li>
+                        <li><a href="{{ url_for('multiple') }}">Multiple Compounds</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="fade-in">
+                <h1 class="page-title">Mixture Compound Simulation</h1>
+                <p class="page-subtitle">
+                    Simulate IR spectra for drug and cutting agent mixtures to analyze compound interactions and detection capabilities.
+                </p>
+            </div>
+
+            <div class="max-w-xl mx-auto">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <h2 class="card-title">Mixture Configuration</h2>
+                        <p class="card-description">
+                            Select a drug compound and cutting agent with their respective percentages to generate a synthetic IR spectrum.
+                        </p>
+                    </div>
+
+                    <form id="mixtureForm" action="{{ url_for('mixture') }}" method="POST">
+                        <div class="form-group">
+                            <label class="form-label">Drug Compound</label>
+                            <select name="drug" class="form-select" required>
+                                <option value="">Select a drug compound...</option>
+                                <option value="cocaine">Cocaine</option>
+                                <option value="heroin">Heroin</option>
+                                <option value="morphine">Morphine</option>
+                                <option value="methadone">Methadone</option>
+                                <option value="meth">Methamphetamine</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Drug Percentage</label>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <input type="range" name="drug_percentage" id="drugSlider" min="1" max="99" value="50" class="flex-1" style="accent-color: var(--primary-blue);">
+                                <span id="drugValue" class="confidence-text" style="min-width: 60px;">50%</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Cutting Agent</label>
+                            <select name="cutting_agent" class="form-select" required>
+                                <option value="">Select a cutting agent...</option>
+                                <option value="sucrose">Sucrose</option>
+                                <option value="lactic">Lactic Acid</option>
+                                <option value="glucose">Glucose</option>
+                                <option value="ethanol">Ethanol</option>
+                                <option value="citric">Citric Acid</option>
+                                <option value="none">No Cutting Agent</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Cutting Agent Percentage</label>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <input type="range" name="cutting_percentage" id="cuttingSlider" min="1" max="99" value="50" class="flex-1" style="accent-color: var(--secondary-blue);">
+                                <span id="cuttingValue" class="confidence-text" style="min-width: 60px;">50%</span>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info" id="percentageWarning" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            <span>Total percentage must equal 100%</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Simulation Notes (Optional)</label>
+                            <textarea name="notes" class="form-input" rows="3" placeholder="Add any notes about the mixture simulation parameters or expected results"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large btn-full">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10 9 10s9-4.45 9-10V7l-10-5z"/>
+                                <path d="M8 14l4-4 4 4"/>
+                            </svg>
+                            Generate Mixture Spectrum
+                        </button>
+                    </form>
+
+                    <div id="loadingSection" class="loading">
+                        <div class="spinner"></div>
+                        <div class="loading-text">Generating mixture spectrum...</div>
+                        <div style="margin-top: 16px; color: var(--gray); font-size: 14px;">
+                            Synthesizing IR spectrum with noise modeling and peak analysis
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">How Mixture Simulation Works</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 24px;">
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">🧪 Spectrum Generation</h4>
+                            <p style="color: var(--gray); font-size: 14px; line-height: 1.5;">
+                                The system combines characteristic peaks from the selected drug and cutting agent based on their percentages, 
+                                adds realistic noise, and applies smoothing to simulate real-world IR spectroscopy conditions.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 24px;">
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">🔍 Peak Analysis</h4>
+                            <p style="color: var(--gray); font-size: 14px; line-height: 1.5;">
+                                The generated spectrum is analyzed using the same AI models used for pure compound detection, 
+                                providing insights into how mixtures affect identification accuracy.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">📊 Comparison</h4>
+                            <p style="color: var(--gray); font-size: 14px; line-height: 1.5;">
+                                Results include side-by-side visualization of the mixture spectrum and the closest matching 
+                                pure compound spectrum for validation and forensic analysis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>&copy; 2024 Detectraa. Advanced IR Spectrum Analysis Platform.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const drugSlider = document.getElementById('drugSlider');
+            const cuttingSlider = document.getElementById('cuttingSlider');
+            const drugValue = document.getElementById('drugValue');
+            const cuttingValue = document.getElementById('cuttingValue');
+            const percentageWarning = document.getElementById('percentageWarning');
+            const mixtureForm = document.getElementById('mixtureForm');
+            const loadingSection = document.getElementById('loadingSection');
+
+            function updatePercentages() {
+                const drug = parseInt(drugSlider.value);
+                const cutting = parseInt(cuttingSlider.value);
+                const total = drug + cutting;
+
+                drugValue.textContent = drug + '%';
+                cuttingValue.textContent = cutting + '%';
+
+                if (total !== 100) {
+                    percentageWarning.style.display = 'flex';
+                    percentageWarning.style.background = '#fecaca';
+                    percentageWarning.style.color = '#991b1b';
+                    percentageWarning.querySelector('span').textContent = `Total: ${total}% (must equal 100%)`;
+                } else {
+                    percentageWarning.style.display = 'none';
+                }
+            }
+
+            drugSlider.addEventListener('input', function() {
+                const drug = parseInt(this.value);
+                const cutting = 100 - drug;
+                cuttingSlider.value = cutting;
+                updatePercentages();
+            });
+
+            cuttingSlider.addEventListener('input', function() {
+                const cutting = parseInt(this.value);
+                const drug = 100 - cutting;
+                drugSlider.value = drug;
+                updatePercentages();
+            });
+
+            mixtureForm.addEventListener('submit', function(e) {
+                const drug = parseInt(drugSlider.value);
+                const cutting = parseInt(cuttingSlider.value);
+                
+                if (drug + cutting !== 100) {
+                    e.preventDefault();
+                    alert('Total percentage must equal 100%');
+                    return;
+                }
+
+                // Show loading state
+                loadingSection.classList.add('active');
+                this.style.display = 'none';
+            });
+
+            // Initialize
+            updatePercentages();
+
+            // Fade-in animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

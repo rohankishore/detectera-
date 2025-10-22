@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Compound Detection - Detectraa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='hi.png') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='hi.png') }}" alt="Detectraa Logo">
+                   
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('upload') }}">Pure Analysis</a></li>
+                        <li><a href="{{ url_for('mixture') }}">Mixture Analysis</a></li>
+                        <li><a href="{{ url_for('multiple') }}">Multiple Compounds</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="fade-in">
+                <h1 class="page-title">Pure Compound Detection</h1>
+                <p class="page-subtitle">
+                    Upload your IR spectrum CSV file to identify pure drug compounds with advanced machine learning analysis.
+                </p>
+            </div>
+
+            <div class="max-w-xl mx-auto">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <h2 class="card-title">Upload IR Spectrum File</h2>
+                        <p class="card-description">
+                            Please upload a CSV file containing wavenumber and absorbance data from your IR spectrometer.
+                        </p>
+                    </div>
+
+                    <form id="uploadForm" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label class="form-label">IR Spectrum Data File</label>
+                            <div class="file-upload" id="fileUpload">
+                                <div class="file-upload-icon">📄</div>
+                                <div class="file-upload-text">Click to select or drag and drop your CSV file</div>
+                                <div class="file-upload-hint">Supported format: CSV (wavenumber, absorbance columns)</div>
+                                <input type="file" name="file" id="fileInput" accept=".csv" required style="display: none;">
+                            </div>
+                            <div id="fileInfo" class="mt-16 hidden">
+                                <div class="alert alert-info">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10,9 9,9 8,9"/>
+                                    </svg>
+                                    <span id="fileName"></span>
+                                    <button type="button" id="removeFile" style="margin-left: auto; background: none; border: none; color: inherit; cursor: pointer;">✕</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Sample Information (Optional)</label>
+                            <input type="text" name="sample_name" class="form-input" placeholder="Enter sample name or ID">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Analysis Notes (Optional)</label>
+                            <textarea name="notes" class="form-input" rows="3" placeholder="Add any relevant notes about the sample or analysis conditions"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large btn-full">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Analyze Spectrum
+                        </button>
+                    </form>
+
+                    <div id="loadingSection" class="loading">
+                        <div class="spinner"></div>
+                        <div class="loading-text">Analyzing IR spectrum...</div>
+                        <div style="margin-top: 16px; color: var(--gray); font-size: 14px;">
+                            This may take a few moments while our AI models process your data
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">File Format Requirements</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="alert alert-info">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="l 4 -7 2 0 0 14 -2 0 z"/>
+                                <path d="l 4 -7 2 0 0 14 -2 0 z"/>
+                            </svg>
+                            <div>
+                                <strong>CSV Format:</strong> Your file must contain two columns labeled "wavenumber" and "absorbance"
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px;">
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">Expected Column Headers:</h4>
+                            <ul style="color: var(--gray); font-size: 14px; margin-left: 20px;">
+                                <li><strong>wavenumber</strong> - Wavenumber values in cm⁻¹</li>
+                                <li><strong>absorbance</strong> - Corresponding absorbance values</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 16px;">
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">Supported Compounds:</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span style="background: var(--light-blue); color: var(--primary-blue); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Cocaine</span>
+                                <span style="background: var(--light-blue); color: var(--primary-blue); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Heroin</span>
+                                <span style="background: var(--light-blue); color: var(--primary-blue); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Morphine</span>
+                                <span style="background: var(--light-blue); color: var(--primary-blue); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Methadone</span>
+                                <span style="background: var(--light-blue); color: var(--primary-blue); padding: 4px 8px; border-radius: 4px; font-size: 12px;">Methamphetamine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>&copy; 2024 Detectraa. Advanced IR Spectrum Analysis Platform.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileUpload = document.getElementById('fileUpload');
+            const fileInput = document.getElementById('fileInput');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const removeFile = document.getElementById('removeFile');
+            const uploadForm = document.getElementById('uploadForm');
+            const loadingSection = document.getElementById('loadingSection');
+
+            // File upload handling
+            fileUpload.addEventListener('click', () => fileInput.click());
+            fileUpload.addEventListener('dragover', handleDragOver);
+            fileUpload.addEventListener('dragleave', handleDragLeave);
+            fileUpload.addEventListener('drop', handleDrop);
+
+            fileInput.addEventListener('change', handleFileSelect);
+            removeFile.addEventListener('click', clearFile);
+
+            uploadForm.addEventListener('submit', function(e) {
+                if (!fileInput.files.length) {
+                    e.preventDefault();
+                    alert('Please select a file before submitting.');
+                    return;
+                }
+                
+                // Show loading state
+                loadingSection.classList.add('active');
+                this.style.display = 'none';
+            });
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                fileUpload.classList.add('dragover');
+            }
+
+            function handleDragLeave(e) {
+                e.preventDefault();
+                fileUpload.classList.remove('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                fileUpload.classList.remove('dragover');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    displayFileInfo(files[0]);
+                }
+            }
+
+            function handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    displayFileInfo(file);
+                }
+            }
+
+            function displayFileInfo(file) {
+                if (file.type !== 'text/csv' && !file.name.toLowerCase().endsWith('.csv')) {
+                    alert('Please select a CSV file.');
+                    clearFile();
+                    return;
+                }
+
+                fileName.textContent = `${file.name} (${formatFileSize(file.size)})`;
+                fileInfo.classList.remove('hidden');
+                fileUpload.style.display = 'none';
+            }
+
+            function clearFile() {
+                fileInput.value = '';
+                fileInfo.classList.add('hidden');
+                fileUpload.style.display = 'block';
+            }
+
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Fade-in animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+Input_Compounds,Expected_Drugs,Predicted_Drugs,Correct
+"cocaine, sucrose",cocaine,cocaine,TRUE
+"cocaine, lactic",cocaine,cocaine,TRUE
+"cocaine, glucose",cocaine,"cocaine, meth",FALSE
+"cocaine, ethanol",cocaine,meth,FALSE
+"cocaine, citric",cocaine,cocaine,TRUE
+"cocaine, sucrose, lactic",cocaine,cocaine,TRUE
+"cocaine, sucrose, glucose",cocaine,cocaine,TRUE
+"cocaine, sucrose, ethanol",cocaine,cocaine,TRUE
+"cocaine, sucrose, citric",cocaine,cocaine,TRUE
+"cocaine, lactic, glucose",cocaine,cocaine,TRUE
+"cocaine, lactic, ethanol",cocaine,cocaine,TRUE
+"cocaine, lactic, citric",cocaine,"cocaine, morphine",FALSE
+"cocaine, glucose, ethanol",cocaine,cocaine,TRUE
+"cocaine, glucose, citric",cocaine,cocaine,TRUE
+"cocaine, ethanol, citric",cocaine,cocaine,TRUE
+"cocaine, sucrose, lactic, glucose",cocaine,cocaine,TRUE
+"cocaine, sucrose, lactic, ethanol",cocaine,cocaine,TRUE
+"cocaine, sucrose, lactic, citric",cocaine,"cocaine, morphine",FALSE
+"cocaine, sucrose, glucose, ethanol",cocaine,cocaine,TRUE
+"cocaine, sucrose, glucose, citric",cocaine,cocaine,TRUE
+"cocaine, sucrose, ethanol, citric",cocaine,cocaine,TRUE
+"cocaine, lactic, glucose, ethanol",cocaine,cocaine,TRUE
+"cocaine, lactic, glucose, citric",cocaine,cocaine,TRUE
+"cocaine, lactic, ethanol, citric",cocaine,cocaine,TRUE
+"cocaine, glucose, ethanol, citric",cocaine,cocaine,TRUE
+"cocaine, sucrose, lactic, glucose, ethanol",cocaine,cocaine,TRUE
+"cocaine, sucrose, lactic, glucose, citric",cocaine,"cocaine, morphine",FALSE
+"cocaine, sucrose, lactic, ethanol, citric",cocaine,cocaine,TRUE
+"cocaine, sucrose, glucose, ethanol, citric",cocaine,cocaine,TRUE
+"cocaine, lactic, glucose, ethanol, citric",cocaine,"cocaine, morphine",FALSE
+"cocaine, sucrose, lactic, glucose, ethanol, citric",cocaine,"cocaine, morphine",FALSE
+"morphine, sucrose",morphine,morphine,TRUE
+"morphine, lactic",morphine,morphine,TRUE
+"morphine, glucose",morphine,morphine,TRUE
+"morphine, ethanol",morphine,morphine,TRUE
+"morphine, citric",morphine,morphine,TRUE
+"morphine, sucrose, lactic",morphine,morphine,TRUE
+"morphine, sucrose, glucose",morphine,morphine,TRUE
+"morphine, sucrose, ethanol",morphine,morphine,TRUE
+"morphine, sucrose, citric",morphine,morphine,TRUE
+"morphine, lactic, glucose",morphine,morphine,TRUE
+"morphine, lactic, ethanol",morphine,morphine,TRUE
+"morphine, lactic, citric",morphine,morphine,TRUE
+"morphine, glucose, ethanol",morphine,morphine,TRUE
+"morphine, glucose, citric",morphine,morphine,TRUE
+"morphine, ethanol, citric",morphine,morphine,TRUE
+"morphine, sucrose, lactic, glucose",morphine,morphine,TRUE
+"morphine, sucrose, lactic, ethanol",morphine,morphine,TRUE
+"morphine, sucrose, lactic, citric",morphine,morphine,TRUE
+"morphine, sucrose, glucose, ethanol",morphine,morphine,TRUE
+"morphine, sucrose, glucose, citric",morphine,morphine,TRUE
+"morphine, sucrose, ethanol, citric",morphine,morphine,TRUE
+"morphine, lactic, glucose, ethanol",morphine,morphine,TRUE
+"morphine, lactic, glucose, citric",morphine,morphine,TRUE
+"morphine, lactic, ethanol, citric",morphine,morphine,TRUE
+"morphine, glucose, ethanol, citric",morphine,morphine,TRUE
+"morphine, sucrose, lactic, glucose, ethanol",morphine,morphine,TRUE
+"morphine, sucrose, lactic, glucose, citric",morphine,morphine,TRUE
+"morphine, sucrose, lactic, ethanol, citric",morphine,morphine,TRUE
+"morphine, sucrose, glucose, ethanol, citric",morphine,morphine,TRUE
+"morphine, lactic, glucose, ethanol, citric",morphine,morphine,TRUE
+"morphine, sucrose, lactic, glucose, ethanol, citric",morphine,morphine,TRUE
+"heroin, sucrose",heroin,heroin,TRUE
+"heroin, lactic",heroin,heroin,TRUE
+"heroin, glucose",heroin,heroin,TRUE
+"heroin, ethanol",heroin,heroin,TRUE
+"heroin, citric",heroin,heroin,TRUE
+"heroin, sucrose, lactic",heroin,heroin,TRUE
+"heroin, sucrose, glucose",heroin,heroin,TRUE
+"heroin, sucrose, ethanol",heroin,heroin,TRUE
+"heroin, sucrose, citric",heroin,"morphine, heroin",FALSE
+"heroin, lactic, glucose",heroin,heroin,TRUE
+"heroin, lactic, ethanol",heroin,heroin,TRUE
+"heroin, lactic, citric",heroin,heroin,TRUE
+"heroin, glucose, ethanol",heroin,heroin,TRUE
+"heroin, glucose, citric",heroin,heroin,TRUE
+"heroin, ethanol, citric",heroin,"morphine, heroin",FALSE
+"heroin, sucrose, lactic, glucose",heroin,heroin,TRUE
+"heroin, sucrose, lactic, ethanol",heroin,heroin,TRUE
+"heroin, sucrose, lactic, citric",heroin,"morphine, heroin",FALSE
+"heroin, sucrose, glucose, ethanol",heroin,heroin,TRUE
+"heroin, sucrose, glucose, citric",heroin,"morphine, heroin",FALSE
+"heroin, sucrose, ethanol, citric",heroin,"morphine, heroin",FALSE
+"heroin, lactic, glucose, ethanol",heroin,heroin,TRUE
+"heroin, lactic, glucose, citric",heroin,heroin,TRUE
+"heroin, lactic, ethanol, citric",heroin,heroin,TRUE
+"heroin, glucose, ethanol, citric",heroin,heroin,TRUE
+"heroin, sucrose, lactic, glucose, ethanol",heroin,heroin,TRUE
+"heroin, sucrose, lactic, glucose, citric",heroin,"morphine, heroin",FALSE
+"heroin, sucrose, lactic, ethanol, citric",heroin,heroin,TRUE
+"heroin, sucrose, glucose, ethanol, citric",heroin,"morphine, heroin",FALSE
+"heroin, lactic, glucose, ethanol, citric",heroin,heroin,TRUE
+"heroin, sucrose, lactic, glucose, ethanol, citric",heroin,heroin,TRUE
+"methadone, sucrose",methadone,methadone,TRUE
+"methadone, lactic",methadone,methadone,TRUE
+"methadone, glucose",methadone,methadone,TRUE
+"methadone, ethanol",methadone,methadone,TRUE
+"methadone, citric",methadone,"morphine, methadone",FALSE
+"methadone, sucrose, lactic",methadone,methadone,TRUE
+"methadone, sucrose, glucose",methadone,methadone,TRUE
+"methadone, sucrose, ethanol",methadone,methadone,TRUE
+"methadone, sucrose, citric",methadone,"morphine, methadone",FALSE
+"methadone, lactic, glucose",methadone,methadone,TRUE
+"methadone, lactic, ethanol",methadone,methadone,TRUE
+"methadone, lactic, citric",methadone,methadone,TRUE
+"methadone, glucose, ethanol",methadone,methadone,TRUE
+"methadone, glucose, citric",methadone,"morphine, methadone",FALSE
+"methadone, ethanol, citric",methadone,"morphine, methadone",FALSE
+"methadone, sucrose, lactic, glucose",methadone,methadone,TRUE
+"methadone, sucrose, lactic, ethanol",methadone,methadone,TRUE
+"methadone, sucrose, lactic, citric",methadone,"morphine, methadone",FALSE
+"methadone, sucrose, glucose, ethanol",methadone,methadone,TRUE
+"methadone, sucrose, glucose, citric",methadone,"morphine, methadone",FALSE
+"methadone, sucrose, ethanol, citric",methadone,"morphine, methadone",FALSE
+"methadone, lactic, glucose, ethanol",methadone,methadone,TRUE
+"methadone, lactic, glucose, citric",methadone,"morphine, methadone",FALSE
+"methadone, lactic, ethanol, citric",methadone,methadone,TRUE
+"methadone, glucose, ethanol, citric",methadone,methadone,TRUE
+"methadone, sucrose, lactic, glucose, ethanol",methadone,methadone,TRUE
+"methadone, sucrose, lactic, glucose, citric",methadone,"morphine, methadone",FALSE
+"methadone, sucrose, lactic, ethanol, citric",methadone,"morphine, methadone",FALSE
+"methadone, sucrose, glucose, ethanol, citric",methadone,methadone,TRUE
+"methadone, lactic, glucose, ethanol, citric",methadone,methadone,TRUE
+"methadone, sucrose, lactic, glucose, ethanol, citric",methadone,methadone,TRUE
+"meth, sucrose",meth,meth,TRUE
+"meth, lactic",meth,meth,TRUE
+"meth, glucose",meth,meth,TRUE
+"meth, ethanol",meth,meth,TRUE
+"meth, citric",meth,cocaine,FALSE
+"meth, sucrose, lactic",meth,cocaine,FALSE
+"meth, sucrose, glucose",meth,meth,TRUE
+"meth, sucrose, ethanol",meth,meth,TRUE
+"meth, sucrose, citric",meth,"morphine, meth",FALSE
+"meth, lactic, glucose",meth,cocaine,FALSE
+"meth, lactic, ethanol",meth,cocaine,FALSE
+"meth, lactic, citric",meth,"morphine, meth",FALSE
+"meth, glucose, ethanol",meth,meth,TRUE
+"meth, glucose, citric",meth,"morphine, meth",FALSE
+"meth, ethanol, citric",meth,cocaine,FALSE
+"meth, sucrose, lactic, glucose",meth,meth,TRUE
+"meth, sucrose, lactic, ethanol",meth,meth,TRUE
+"meth, sucrose, lactic, citric",meth,meth,TRUE
+"meth, sucrose, glucose, ethanol",meth,meth,TRUE
+"meth, sucrose, glucose, citric",meth,meth,TRUE
+"meth, sucrose, ethanol, citric",meth,meth,TRUE
+"meth, lactic, glucose, ethanol",meth,cocaine,FALSE
+"meth, lactic, glucose, citric",meth,meth,TRUE
+"meth, lactic, ethanol, citric",meth,meth,TRUE
+"meth, glucose, ethanol, citric",meth,meth,TRUE
+"meth, sucrose, lactic, glucose, ethanol",meth,meth,TRUE
+"meth, sucrose, lactic, glucose, citric",meth,"morphine, meth",FALSE
+"meth, sucrose, lactic, ethanol, citric",meth,meth,TRUE
+"meth, sucrose, glucose, ethanol, citric",meth,meth,TRUE
+"meth, lactic, glucose, ethanol, citric",meth,"morphine, meth",FALSE
+"meth, sucrose, lactic, glucose, ethanol, citric",meth,meth,TRUE
+"cocaine, morphine, sucrose","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, lactic","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, glucose","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, ethanol","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, glucose","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, sucrose, ethanol","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, sucrose, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, lactic, glucose","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, lactic, ethanol","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, lactic, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, glucose, ethanol","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, glucose, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic, glucose","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic, ethanol","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, sucrose, lactic, citric","cocaine, morphine","morphine, meth",FALSE
+"cocaine, morphine, sucrose, glucose, ethanol","cocaine, morphine",cocaine,FALSE
+"cocaine, morphine, sucrose, glucose, citric","cocaine, morphine","morphine, meth",FALSE
+"cocaine, morphine, sucrose, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, lactic, glucose, ethanol","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, lactic, glucose, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, lactic, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, glucose, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic, glucose, ethanol","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic, glucose, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, glucose, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, lactic, glucose, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, morphine, sucrose, lactic, glucose, ethanol, citric","cocaine, morphine","cocaine, morphine",TRUE
+"cocaine, heroin, sucrose","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, glucose","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, glucose","cocaine, heroin","heroin, meth",FALSE
+"cocaine, heroin, sucrose, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, citric","cocaine, heroin","heroin, meth",FALSE
+"cocaine, heroin, lactic, glucose","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, glucose, ethanol","cocaine, heroin","heroin, meth",FALSE
+"cocaine, heroin, glucose, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, glucose","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, glucose, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, glucose, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic, glucose, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic, glucose, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, glucose, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, glucose, ethanol","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, glucose, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, ethanol, citric","cocaine, heroin","heroin, meth",FALSE
+"cocaine, heroin, sucrose, glucose, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, lactic, glucose, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, heroin, sucrose, lactic, glucose, ethanol, citric","cocaine, heroin","cocaine, heroin",TRUE
+"cocaine, methadone, sucrose","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, lactic","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, glucose","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, ethanol","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, lactic","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, glucose","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, ethanol","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, sucrose, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, glucose","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, ethanol","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, glucose, ethanol","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, glucose, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, ethanol, citric","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, sucrose, lactic, glucose","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, sucrose, lactic, ethanol","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, lactic, citric","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, sucrose, glucose, ethanol","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, sucrose, glucose, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, glucose, ethanol","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, glucose, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, glucose, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, lactic, glucose, ethanol","cocaine, methadone","methadone, meth",FALSE
+"cocaine, methadone, sucrose, lactic, glucose, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, lactic, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, glucose, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, lactic, glucose, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, methadone, sucrose, lactic, glucose, ethanol, citric","cocaine, methadone","cocaine, methadone",TRUE
+"cocaine, meth, sucrose","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, glucose","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, glucose","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, glucose","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, glucose, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, glucose, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, glucose","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, glucose, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, glucose, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, glucose, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, glucose, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, glucose, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, glucose, ethanol","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, glucose, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, glucose, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, lactic, glucose, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"cocaine, meth, sucrose, lactic, glucose, ethanol, citric","cocaine, meth","cocaine, meth",TRUE
+"morphine, heroin, sucrose","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, lactic","morphine, heroin",heroin,FALSE
+"morphine, heroin, glucose","morphine, heroin",heroin,FALSE
+"morphine, heroin, ethanol","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, lactic","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, glucose","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, ethanol","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, lactic, glucose","morphine, heroin",heroin,FALSE
+"morphine, heroin, lactic, ethanol","morphine, heroin",heroin,FALSE
+"morphine, heroin, lactic, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, glucose, ethanol","morphine, heroin",heroin,FALSE
+"morphine, heroin, glucose, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, lactic, glucose","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, lactic, ethanol","morphine, heroin",heroin,FALSE
+"morphine, heroin, sucrose, lactic, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, glucose, ethanol","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, glucose, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, lactic, glucose, ethanol","morphine, heroin",heroin,FALSE
+"morphine, heroin, lactic, glucose, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, lactic, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, glucose, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, lactic, glucose, ethanol","morphine, heroin",heroin,FALSE
+"morphine, heroin, sucrose, lactic, glucose, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, lactic, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, glucose, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, lactic, glucose, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, heroin, sucrose, lactic, glucose, ethanol, citric","morphine, heroin","morphine, heroin",TRUE
+"morphine, methadone, sucrose","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, lactic","morphine, methadone",methadone,FALSE
+"morphine, methadone, glucose","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, ethanol","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, glucose","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, ethanol","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, lactic, glucose","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, lactic, ethanol","morphine, methadone",methadone,FALSE
+"morphine, methadone, lactic, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, glucose, ethanol","morphine, methadone",methadone,FALSE
+"morphine, methadone, glucose, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic, glucose","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic, ethanol","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, glucose, ethanol","morphine, methadone",methadone,FALSE
+"morphine, methadone, sucrose, glucose, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, lactic, glucose, ethanol","morphine, methadone",methadone,FALSE
+"morphine, methadone, lactic, glucose, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, lactic, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, glucose, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic, glucose, ethanol","morphine, methadone",methadone,FALSE
+"morphine, methadone, sucrose, lactic, glucose, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, glucose, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, lactic, glucose, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, methadone, sucrose, lactic, glucose, ethanol, citric","morphine, methadone","morphine, methadone",TRUE
+"morphine, meth, sucrose","morphine, meth","morphine, meth",TRUE
+"morphine, meth, lactic","morphine, meth","morphine, meth",TRUE
+"morphine, meth, glucose","morphine, meth","morphine, meth",TRUE
+"morphine, meth, ethanol","morphine, meth",cocaine,FALSE
+"morphine, meth, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, lactic","morphine, meth",meth,FALSE
+"morphine, meth, sucrose, glucose","morphine, meth",meth,FALSE
+"morphine, meth, sucrose, ethanol","morphine, meth",meth,FALSE
+"morphine, meth, sucrose, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, lactic, glucose","morphine, meth",meth,FALSE
+"morphine, meth, lactic, ethanol","morphine, meth",meth,FALSE
+"morphine, meth, lactic, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, glucose, ethanol","morphine, meth",meth,FALSE
+"morphine, meth, glucose, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, lactic, glucose","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, lactic, ethanol","morphine, meth",meth,FALSE
+"morphine, meth, sucrose, lactic, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, glucose, ethanol","morphine, meth",meth,FALSE
+"morphine, meth, sucrose, glucose, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, lactic, glucose, ethanol","morphine, meth","morphine, meth",TRUE
+"morphine, meth, lactic, glucose, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, lactic, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, glucose, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, lactic, glucose, ethanol","morphine, meth",meth,FALSE
+"morphine, meth, sucrose, lactic, glucose, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, lactic, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, glucose, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, lactic, glucose, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"morphine, meth, sucrose, lactic, glucose, ethanol, citric","morphine, meth","morphine, meth",TRUE
+"heroin, methadone, sucrose","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, glucose","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, glucose","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, glucose","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, glucose, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, glucose, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, glucose","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, glucose, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, glucose, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, glucose, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, glucose, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, glucose, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, glucose, ethanol","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, glucose, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, glucose, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, lactic, glucose, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, methadone, sucrose, lactic, glucose, ethanol, citric","heroin, methadone","heroin, methadone",TRUE
+"heroin, meth, sucrose","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic","heroin, meth","heroin, meth",TRUE
+"heroin, meth, glucose","heroin, meth","heroin, meth",TRUE
+"heroin, meth, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, glucose","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, glucose","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, glucose, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, glucose, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic, glucose","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, glucose, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, glucose, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, glucose, ethanol","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, glucose, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, glucose, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic, glucose, ethanol","heroin, meth","cocaine, heroin",FALSE
+"heroin, meth, sucrose, lactic, glucose, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, glucose, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, lactic, glucose, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"heroin, meth, sucrose, lactic, glucose, ethanol, citric","heroin, meth","heroin, meth",TRUE
+"methadone, meth, sucrose","methadone, meth","methadone, meth",TRUE
+"methadone, meth, lactic","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, glucose","methadone, meth","methadone, meth",TRUE
+"methadone, meth, ethanol","methadone, meth","methadone, meth",TRUE
+"methadone, meth, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, sucrose, lactic","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, glucose","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, ethanol","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, lactic, glucose","methadone, meth","methadone, meth",TRUE
+"methadone, meth, lactic, ethanol","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, lactic, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, glucose, ethanol","methadone, meth","methadone, meth",TRUE
+"methadone, meth, glucose, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, ethanol, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, lactic, glucose","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, lactic, ethanol","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, sucrose, lactic, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, glucose, ethanol","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, glucose, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, ethanol, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, lactic, glucose, ethanol","methadone, meth","methadone, meth",TRUE
+"methadone, meth, lactic, glucose, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, lactic, ethanol, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, glucose, ethanol, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, lactic, glucose, ethanol","methadone, meth","methadone, meth",TRUE
+"methadone, meth, sucrose, lactic, glucose, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, sucrose, lactic, ethanol, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, sucrose, glucose, ethanol, citric","methadone, meth","methadone, meth",TRUE
+"methadone, meth, lactic, glucose, ethanol, citric","methadone, meth","cocaine, methadone",FALSE
+"methadone, meth, sucrose, lactic, glucose, ethanol, citric","methadone, meth","cocaine, methadone",FALSE

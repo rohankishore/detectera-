@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Compound Analysis - Detectraa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='hi.png') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='hi.png') }}" alt="Detectraa Logo">
+                    
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('upload') }}">Pure Analysis</a></li>
+                        <li><a href="{{ url_for('mixture') }}">Mixture Analysis</a></li>
+                        <li><a href="{{ url_for('multiple') }}">Multiple Compounds</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="fade-in">
+                <h1 class="page-title">Multiple Compound Analysis</h1>
+                <p class="page-subtitle">
+                    Simulate complex IR spectra with up to 2 drug compounds and 5 non-drug compounds using advanced multi-label classification.
+                </p>
+            </div>
+
+            <div class="max-w-xl mx-auto">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <h2 class="card-title">Compound Selection</h2>
+                        <p class="card-description">
+                            Select your compounds to create a complex mixture spectrum. Remember: maximum 2 drugs and 5 non-drug compounds.
+                        </p>
+                    </div>
+
+                    <form id="multipleForm" action="{{ url_for('multiple') }}" method="POST">
+                        <div class="compound-selection">
+                            <div class="compound-group">
+                                <h3>Drug Compounds</h3>
+                                <div id="drugCount" class="alert alert-info" style="margin-bottom: 16px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="l 4 -7 2 0 0 14 -2 0 z"/>
+                                        <path d="l 4 -7 2 0 0 14 -2 0 z"/>
+                                    </svg>
+                                    <span>Selected: 0/2 drug compounds</span>
+                                </div>
+                                
+                                <div class="compound-item">
+                                    <input type="checkbox" name="drugs" value="cocaine" class="compound-checkbox drug-checkbox" id="cocaine">
+                                    <label for="cocaine" class="compound-label">Cocaine</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="drugs" value="heroin" class="compound-checkbox drug-checkbox" id="heroin">
+                                    <label for="heroin" class="compound-label">Heroin</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="drugs" value="morphine" class="compound-checkbox drug-checkbox" id="morphine">
+                                    <label for="morphine" class="compound-label">Morphine</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="drugs" value="methadone" class="compound-checkbox drug-checkbox" id="methadone">
+                                    <label for="methadone" class="compound-label">Methadone</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="drugs" value="meth" class="compound-checkbox drug-checkbox" id="meth">
+                                    <label for="meth" class="compound-label">Methamphetamine</label>
+                                </div>
+                            </div>
+
+                            <div class="compound-group">
+                                <h3>Non-Drug Compounds</h3>
+                                <div id="nonDrugCount" class="alert alert-info" style="margin-bottom: 16px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="l 4 -7 2 0 0 14 -2 0 z"/>
+                                        <path d="l 4 -7 2 0 0 14 -2 0 z"/>
+                                    </svg>
+                                    <span>Selected: 0/5 non-drug compounds</span>
+                                </div>
+                                
+                                <div class="compound-item">
+                                    <input type="checkbox" name="non_drugs" value="sucrose" class="compound-checkbox non-drug-checkbox" id="sucrose">
+                                    <label for="sucrose" class="compound-label">Sucrose</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="non_drugs" value="lactic" class="compound-checkbox non-drug-checkbox" id="lactic">
+                                    <label for="lactic" class="compound-label">Lactic Acid</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="non_drugs" value="glucose" class="compound-checkbox non-drug-checkbox" id="glucose">
+                                    <label for="glucose" class="compound-label">Glucose</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="non_drugs" value="ethanol" class="compound-checkbox non-drug-checkbox" id="ethanol">
+                                    <label for="ethanol" class="compound-label">Ethanol</label>
+                                </div>
+                                <div class="compound-item">
+                                    <input type="checkbox" name="non_drugs" value="citric" class="compound-checkbox non-drug-checkbox" id="citric">
+                                    <label for="citric" class="compound-label">Citric Acid</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="selectionWarning" class="alert alert-warning" style="display: none; margin-top: 16px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            <span id="warningText">Please select at least one compound</span>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 24px;">
+                            <label class="form-label">Analysis Notes (Optional)</label>
+                            <textarea name="notes" class="form-input" rows="3" placeholder="Add any notes about the expected compound interactions or analysis objectives"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large btn-full">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <circle cx="12" cy="2" r="1"/>
+                                <circle cx="12" cy="22" r="1"/>
+                                <circle cx="2" cy="12" r="1"/>
+                                <circle cx="22" cy="12" r="1"/>
+                                <circle cx="5.64" cy="5.64" r="1"/>
+                                <circle cx="18.36" cy="18.36" r="1"/>
+                                <circle cx="5.64" cy="18.36" r="1"/>
+                                <circle cx="18.36" cy="5.64" r="1"/>
+                            </svg>
+                            Generate Multiple Compound Spectrum
+                        </button>
+                    </form>
+
+                    <div id="loadingSection" class="loading">
+                        <div class="spinner"></div>
+                        <div class="loading-text">Processing multiple compounds...</div>
+                        <div style="margin-top: 16px; color: var(--gray); font-size: 14px;">
+                            Running ensemble classifier chains and multi-label prediction
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <h3 class="card-title">Multi-Label Classification</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 24px;">
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">🤖 Advanced AI Models</h4>
+                            <p style="color: var(--gray); font-size: 14px; line-height: 1.5;">
+                                Uses ensemble classifier chains with XGBoost, ExtraTrees, Ridge, CatBoost, SVM, and AdaBoost models 
+                                to predict multiple drug compounds simultaneously in complex mixtures.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 24px;">
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">📊 Overlaid Visualization</h4>
+                            <p style="color: var(--gray); font-size: 14px; line-height: 1.5;">
+                                Results include an overlaid spectrum plot showing the full mixture spectrum alongside 
+                                individual predicted drug compound spectra in different colors for easy comparison.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4 style="color: var(--primary-blue); font-size: 16px; margin-bottom: 8px;">🔬 Complex Analysis</h4>
+                            <p style="color: var(--gray); font-size: 14px; line-height: 1.5;">
+                                The system can handle intricate compound interactions and provide detailed analysis 
+                                of how multiple substances appear in combined IR spectra.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>&copy; 2024 Detectraa. Advanced IR Spectrum Analysis Platform.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const drugCheckboxes = document.querySelectorAll('.drug-checkbox');
+            const nonDrugCheckboxes = document.querySelectorAll('.non-drug-checkbox');
+            const drugCount = document.getElementById('drugCount');
+            const nonDrugCount = document.getElementById('nonDrugCount');
+            const selectionWarning = document.getElementById('selectionWarning');
+            const warningText = document.getElementById('warningText');
+            const multipleForm = document.getElementById('multipleForm');
+            const loadingSection = document.getElementById('loadingSection');
+
+            function updateCounts() {
+                const selectedDrugs = Array.from(drugCheckboxes).filter(cb => cb.checked).length;
+                const selectedNonDrugs = Array.from(nonDrugCheckboxes).filter(cb => cb.checked).length;
+                
+                // Update drug count
+                drugCount.querySelector('span').textContent = `Selected: ${selectedDrugs}/2 drug compounds`;
+                if (selectedDrugs >= 2) {
+                    drugCount.style.background = '#fecaca';
+                    drugCount.style.color = '#991b1b';
+                } else {
+                    drugCount.style.background = 'var(--light-blue)';
+                    drugCount.style.color = 'var(--primary-blue)';
+                }
+
+                // Update non-drug count
+                nonDrugCount.querySelector('span').textContent = `Selected: ${selectedNonDrugs}/5 non-drug compounds`;
+                if (selectedNonDrugs >= 5) {
+                    nonDrugCount.style.background = '#fecaca';
+                    nonDrugCount.style.color = '#991b1b';
+                } else {
+                    nonDrugCount.style.background = 'var(--light-blue)';
+                    nonDrugCount.style.color = 'var(--primary-blue)';
+                }
+
+                // Disable/enable checkboxes
+                drugCheckboxes.forEach(cb => {
+                    if (!cb.checked && selectedDrugs >= 2) {
+                        cb.disabled = true;
+                        cb.parentElement.style.opacity = '0.5';
+                    } else {
+                        cb.disabled = false;
+                        cb.parentElement.style.opacity = '1';
+                    }
+                });
+
+                nonDrugCheckboxes.forEach(cb => {
+                    if (!cb.checked && selectedNonDrugs >= 5) {
+                        cb.disabled = true;
+                        cb.parentElement.style.opacity = '0.5';
+                    } else {
+                        cb.disabled = false;
+                        cb.parentElement.style.opacity = '1';
+                    }
+                });
+
+                // Show/hide warning
+                const totalSelected = selectedDrugs + selectedNonDrugs;
+                if (totalSelected === 0) {
+                    selectionWarning.style.display = 'flex';
+                    warningText.textContent = 'Please select at least one compound';
+                } else if (selectedDrugs > 2) {
+                    selectionWarning.style.display = 'flex';
+                    warningText.textContent = 'Maximum 2 drug compounds allowed';
+                } else if (selectedNonDrugs > 5) {
+                    selectionWarning.style.display = 'flex';
+                    warningText.textContent = 'Maximum 5 non-drug compounds allowed';
+                } else {
+                    selectionWarning.style.display = 'none';
+                }
+            }
+
+            // Add event listeners
+            [...drugCheckboxes, ...nonDrugCheckboxes].forEach(cb => {
+                cb.addEventListener('change', updateCounts);
+            });
+
+            multipleForm.addEventListener('submit', function(e) {
+                const selectedDrugs = Array.from(drugCheckboxes).filter(cb => cb.checked).length;
+                const selectedNonDrugs = Array.from(nonDrugCheckboxes).filter(cb => cb.checked).length;
+                const totalSelected = selectedDrugs + selectedNonDrugs;
+
+                if (totalSelected === 0) {
+                    e.preventDefault();
+                    alert('Please select at least one compound');
+                    return;
+                }
+
+                if (selectedDrugs > 2) {
+                    e.preventDefault();
+                    alert('Maximum 2 drug compounds allowed');
+                    return;
+                }
+
+                if (selectedNonDrugs > 5) {
+                    e.preventDefault();
+                    alert('Maximum 5 non-drug compounds allowed');
+                    return;
+                }
+
+                // Show loading state
+                loadingSection.classList.add('active');
+                this.style.display = 'none';
+            });
+
+            // Initialize
+            updateCounts();
+
+            // Fade-in animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
