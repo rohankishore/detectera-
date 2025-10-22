@@ -10,4 +10,4 @@ else
 fi
 
 echo "Starting Gunicorn..."
-exec gunicorn wsgi:application --bind 0.0.0.0:5000 --workers 3
+exec gunicorn wsgi:application --bind 0.0.0.0:5000 --workers 3 --timeout 120 --preload
