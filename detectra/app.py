@@ -331,9 +331,9 @@ def upload():
             # Load models and make prediction
             try:
                 # Use absolute model paths under app root if available
-                binary_path = os.path.join(app.root_path, 'drug_binary_xgb.pkl')
-                multiclass_path = os.path.join(app.root_path, 'drug_multiclass_xgb.pkl')
-                le_path = os.path.join(app.root_path, 'drug_label_encoder.pkl')
+                binary_path = os.path.join(app.root_path, 'model', 'drug_binary_xgb.pkl')
+                multiclass_path = os.path.join(app.root_path, 'model', 'drug_multiclass_xgb.pkl')
+                le_path = os.path.join(app.root_path, 'model', 'drug_label_encoder.pkl')
 
                 binary_model = joblib.load(binary_path)
                 multiclass_model = joblib.load(multiclass_path)
