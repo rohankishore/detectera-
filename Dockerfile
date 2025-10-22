@@ -7,7 +7,7 @@ WORKDIR /app
 # Install system dependencies required for Python libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    libatlas-base-dev \
+    libopenblas-dev \
     libgl1-mesa-glx \
     libglib2.0-0 \
  && rm -rf /var/lib/apt/lists/*
